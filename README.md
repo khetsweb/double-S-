@@ -1,1 +1,606 @@
 # double-S-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sara's Little Reset ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@700;800;900&display=swap');
+
+:root {
+  --pink: #ff82ad;
+  --purple: #a994ff;
+  --ink: #493b65;
+  --muted: #8f83a5;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 10% 10%, #ffe0ec 0, transparent 35%),
+    radial-gradient(circle at 90% 85%, #e2dcff 0, transparent 35%),
+    #fff9fd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 22px 14px;
+}
+
+button { font: inherit; cursor: pointer; }
+
+.app {
+  width: 100%;
+  max-width: 510px;
+  background: rgba(255,255,255,.88);
+  border: 1px solid #f4e4f4;
+  border-radius: 30px;
+  padding: 28px 23px;
+  box-shadow: 0 18px 65px #9c80bb20;
+  position: relative;
+  overflow: hidden;
+}
+
+.topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 15px;
+}
+
+.pill {
+  background: #f5edff;
+  padding: 7px 11px;
+  border-radius: 30px;
+}
+
+.progress {
+  height: 6px;
+  background: #f1eafa;
+  border-radius: 10px;
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+
+#bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--pink), var(--purple));
+  transition: width .4s;
+}
+
+h1, h2, h3 {
+  font-family: 'Nunito', sans-serif;
+}
+
+h1 {
+  font-size: clamp(35px, 9vw, 48px);
+  line-height: 1.08;
+  margin: 13px 0;
+  letter-spacing: -1.5px;
+}
+
+h2 { font-size: 27px; margin: 12px 0; }
+p { line-height: 1.65; }
+
+.eyebrow {
+  color: #d45c91;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11px;
+}
+
+.sub {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.hero-emoji {
+  font-size: 68px;
+  display: block;
+  margin: 12px 0;
+  animation: bob 2s ease-in-out infinite;
+}
+
+@keyframes bob {
+  50% { transform: translateY(-7px) rotate(3deg); }
+}
+
+.card {
+  background: #fff7fb;
+  border: 1px solid #f7e6f1;
+  border-radius: 19px;
+  padding: 17px;
+  margin: 12px 0;
+  font-weight: 700;
+  text-align: left;
+  color: var(--ink);
+  width: 100%;
+  transition: transform .16s, border .16s, background .16s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--pink);
+  background: #fff0f7;
+}
+
+.card:focus-visible, .primary:focus-visible {
+  outline: 3px solid var(--purple);
+  outline-offset: 3px;
+}
+
+.card small {
+  display: block;
+  font-weight: 400;
+  color: var(--muted);
+  margin-top: 5px;
+}
+
+.primary {
+  width: 100%;
+  border: none;
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 14px;
+  color: white;
+  font-weight: 800;
+  background: linear-gradient(110deg, #ff82ad, #a994ff);
+  box-shadow: 0 7px 18px #c8a1e944;
+  transition: transform .15s;
+}
+
+.primary:hover { transform: translateY(-2px); }
+
+.secondary {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  padding: 13px;
+  font-weight: 700;
+  width: 100%;
+}
+
+#feedback {
+  background: #f5efff;
+  padding: 13px;
+  border-radius: 15px;
+  line-height: 1.5;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.hidden { display: none !important; }
+
+.center { text-align: center; }
+
+.choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.choices .card {
+  text-align: center;
+  min-height: 110px;
+  padding: 15px 9px;
+}
+
+.big { font-size: 31px; display: block; margin-bottom: 8px; }
+
+.mood {
+  font-size: 25px;
+  display: block;
+  margin-bottom: 7px;
+}
+
+.footer {
+  text-align: center;
+  color: #b2a4c0;
+  font-size: 11px;
+  margin-top: 23px;
+}
+
+.confetti {
+  position: fixed;
+  top: -20px;
+  pointer-events: none;
+  z-index: 5;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(600deg); opacity: 0; }
+}
+
+#endMessage {
+  background: linear-gradient(135deg, #fff0f7, #f0edff);
+  border-radius: 20px;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.85;
+  text-align: left;
+}
+
+@media (max-width: 380px) {
+  .app { padding: 23px 17px; }
+}
+</style>
+</head>
+
+<body>
+<main class="app">
+  <div class="topline">
+    <span>♡ SARA'S LITTLE RESET</span>
+    <span class="pill" id="roundLabel">JUST FOR YOU</span>
+  </div>
+
+  <div class="progress"><div id="bar"></div></div>
+
+  <section id="screen"></section>
+
+  <div class="footer">made with a little extra love ♡</div>
+</main>
+
+<script>
+const screen = document.getElementById('screen');
+const bar = document.getElementById('bar');
+const roundLabel = document.getElementById('roundLabel');
+
+let round = 0;
+let question = 0;
+let score = 0;
+let answers = [];
+
+const rounds = [
+  {
+    title: "TWO TRUTHS & A LIE",
+    emoji: "🕵️‍♀️",
+    intro: "Three statements. Two are true, one is a lie. How good is your detective work?",
+    questions: [
+      {
+        q: "Which one is the lie?",
+        options: [
+          "Octopuses have three hearts",
+          "Bananas are berries",
+          "Strawberries are botanically berries"
+        ],
+        correct: 2,
+        facts: [
+          "Yep! Octopuses have three hearts.",
+          "Correct! Botanically, bananas are berries.",
+          "Gotcha! Strawberries aren't true botanical berries."
+        ]
+      },
+      {
+        q: "Find the fake fact 👀",
+        options: [
+          "Wombats poop cubes",
+          "Flamingos are naturally born pink",
+          "Sea otters sometimes hold hands"
+        ],
+        correct: 1,
+        facts: [
+          "It's real! Wombats produce cube-shaped poop.",
+          "Nope! Flamingos get their pink colour from their diet.",
+          "True! Sea otters sometimes hold hands while resting."
+        ]
+      },
+      {
+        q: "Last one. Choose wisely.",
+        options: [
+          "A day on Venus is longer than its year",
+          "Sharks are older than trees",
+          "Goldfish have a memory of only 3 seconds"
+        ],
+        correct: 2,
+        facts: [
+          "True! Venus rotates so slowly that its day exceeds its year.",
+          "True! Sharks predate the earliest trees.",
+          "Fake! Goldfish can remember things much longer than that."
+        ]
+      }
+    ]
+  }
+];
+
+const wouldYouRather = [
+  {
+    q: "Your uni life gets one upgrade. Pick your fighter.",
+    a: "🧹 A roommate who cleans EVERYTHING",
+    b: "🍜 Unlimited free food forever",
+    ra: "A clean room with peace? Honestly, elite.",
+    rb: "The financial and emotional stability of unlimited food. Iconic."
+  },
+  {
+    q: "You can teleport for one day. What's the move?",
+    a: "🏡 Fly home to Bangkok",
+    b: "🏝️ Disappear to a private island",
+    ra: "Home, familiar food, and your people. That's a good day.",
+    rb: "No deadlines. No drama. Just island mode."
+  },
+  {
+    q: "Choose your new superpower.",
+    a: "⏰ Pause time whenever you want",
+    b: "💸 Every purchase is free",
+    ra: "Extra sleep, extra breaks, extra everything. Genius.",
+    rb: "The shopping cart has officially entered its final form."
+  },
+  {
+    q: "Your life is now a movie. Pick the genre.",
+    a: "😂 Unhinged comedy",
+    b: "✨ Main-character coming-of-age film",
+    ra: "The bloopers would win every award.",
+    rb: "A little character development, a killer soundtrack, a happy ending."
+  }
+];
+
+const moods = [
+  {
+    emoji: "🥱",
+    name: "running on 2% battery",
+    result: "Official prescription: comfy clothes, a favourite snack, and absolutely no unnecessary side quests."
+  },
+  {
+    emoji: "😤",
+    name: "one inconvenience away",
+    result: "You are entitled to one dramatic sigh, a snack break, and ignoring anything that can wait until tomorrow."
+  },
+  {
+    emoji: "🥹",
+    name: "missing home a little",
+    result: "Home is still home, no matter how far away you are. You can miss it and still find good things where you are."
+  },
+  {
+    emoji: "😎",
+    name: "actually thriving today",
+    result: "LOOK AT YOU GO. This energy deserves a good meal, a little treat, and a ridiculously good playlist."
+  },
+  {
+    emoji: "🫠",
+    name: "I don't even know anymore",
+    result: "A completely valid mood. No need to solve your entire life tonight. One tiny win is enough."
+  },
+  {
+    emoji: "🦦",
+    name: "just here for the vibes",
+    result: "Excellent. Your only task is to remain a silly little creature and enjoy at least one thing today."
+  }
+];
+
+function setProgress() {
+  const total = 3 + wouldYouRather.length + 1;
+  const done = round === 0 ? question :
+    round === 1 ? 3 + question :
+    round === 2 ? 3 + wouldYouRather.length : total;
+  bar.style.width = Math.min(100, done / total * 100) + "%";
+}
+
+function start() {
+  round = 0;
+  question = 0;
+  score = 0;
+  answers = [];
+  showIntro();
+}
+
+function showIntro() {
+  roundLabel.textContent = "A LITTLE BREAK";
+  bar.style.width = "0%";
+  screen.innerHTML = `
+    <div class="center">
+      <span class="hero-emoji">🎀</span>
+      <div class="eyebrow">a tiny corner of the internet</div>
+      <h1>Hey, Sara!<br>♡</h1>
+      <p class="sub">Welcome to your very important, very official, very unserious little break.</p>
+      <p>Today's agenda: absolutely nothing productive.</p>
+      <div style="background:#fff2f8;padding:17px;border-radius:18px;margin:20px 0;">
+        🕵️‍♀️ A little guessing game<br>
+        💭 A few impossible choices<br>
+        🌷 A tiny vibe check<br>
+        💌 One little message for you
+      </div>
+      <p class="sub">No pressure. No wrong moods. Just a few minutes for yourself.</p>
+      <button class="primary" onclick="showTruthIntro()">OKAY, LET'S PLAY ✨</button>
+    </div>`;
+}
+
+function showTruthIntro() {
+  roundLabel.textContent = "GAME 1 OF 3";
+  screen.innerHTML = `
+    <div class="center">
+      <span class="hero-emoji">🕵️‍♀️</span>
+      <div class="eyebrow">round one</div>
+      <h2>Two Truths & A Lie</h2>
+      <p class="sub">Choose the statement that is NOT true. Let's see what you've got.</p>
+      <button class="primary" onclick="showTruth()">LET'S GO →</button>
+    </div>`;
+}
+
+function showTruth() {
+  round = 0;
+  const item = rounds[0].questions[question];
+  roundLabel.textContent = `GAME 1 · ${question + 1}/3`;
+  setProgress();
+
+  screen.innerHTML = `
+    <div class="eyebrow">TWO TRUTHS & A LIE</div>
+    <h2>${item.q}</h2>
+    <p class="sub">Tap the fake fact 👇</p>
+    ${item.options.map((option, i) => `
+      <button class="card" onclick="answerTruth(${i})">
+        <span style="color:#d776a0;margin-right:8px;">0${i+1}</span>${option}
+      </button>`).join('')}
+    <div id="feedback" class="hidden" aria-live="polite"></div>
+    <button id="next" class="primary hidden" onclick="nextTruth()">NEXT QUESTION →</button>`;
+}
+
+function answerTruth(index) {
+  const item = rounds[0].questions[question];
+  const feedback = document.getElementById('feedback');
+  if (feedback.classList.contains('hidden') === false) return;
+
+  const correct = index === item.correct;
+  if (correct) score++;
+  answers.push(correct);
+
+  feedback.classList.remove('hidden');
+  feedback.innerHTML = `${correct ? '🎉 CORRECT!' : '🙃 NOT QUITE!'}<br>${item.facts[index]}`;
+
+  document.querySelectorAll('.card').forEach(b => b.disabled = true);
+  document.getElementById('next').classList.remove('hidden');
+}
+
+function nextTruth() {
+  question++;
+  if (question < rounds[0].questions.length) showTruth();
+  else showWouldIntro();
+}
+
+function showWouldIntro() {
+  round = 1;
+  question = 0;
+  roundLabel.textContent = "GAME 2 OF 3";
+  setProgress();
+  screen.innerHTML = `
+    <div class="center">
+      <span class="hero-emoji">🤔</span>
+      <div class="eyebrow">round two</div>
+      <h2>Would You Rather?</h2>
+      <p class="sub">There are no wrong answers. Your choices might, however, be questionable.</p>
+      <button class="primary" onclick="showWould()">MAKE ME CHOOSE →</button>
+    </div>`;
+}
+
+function showWould() {
+  const item = wouldYouRather[question];
+  roundLabel.textContent = `GAME 2 · ${question + 1}/${wouldYouRather.length}`;
+  setProgress();
+
+  screen.innerHTML = `
+    <div class="eyebrow">WOULD YOU RATHER?</div>
+    <h2>${item.q}</h2>
+    <div class="choices">
+      <button class="card" onclick="answerWould(0)">
+        ${item.a}
+      </button>
+      <button class="card" onclick="answerWould(1)">
+        ${item.b}
+      </button>
+    </div>
+    <div id="feedback" class="hidden" aria-live="polite"></div>
+    <button id="next" class="primary hidden" onclick="nextWould()">NEXT →</button>`;
+}
+
+function answerWould(choice) {
+  const item = wouldYouRather[question];
+  const feedback = document.getElementById('feedback');
+  if (!feedback.classList.contains('hidden')) return;
+
+  feedback.classList.remove('hidden');
+  feedback.innerHTML = choice === 0 ? item.ra : item.rb;
+  document.querySelectorAll('.card').forEach(b => b.disabled = true);
+  document.getElementById('next').classList.remove('hidden');
+}
+
+function nextWould() {
+  question++;
+  if (question < wouldYouRather.length) showWould();
+  else showMoodIntro();
+}
+
+function showMoodIntro() {
+  round = 2;
+  roundLabel.textContent = "GAME 3 OF 3";
+  setProgress();
+  screen.innerHTML = `
+    <div class="center">
+      <span class="hero-emoji">🌈</span>
+      <div class="eyebrow">round three</div>
+      <h2>Today's Vibe Check</h2>
+      <p class="sub">No explanation required. Pick whichever feels most like you right now.</p>
+      <button class="primary" onclick="showMood()">PICK MY VIBE →</button>
+    </div>`;
+}
+
+function showMood() {
+  screen.innerHTML = `
+    <div class="eyebrow">HOW ARE WE FEELING?</div>
+    <h2>Be honest 👀</h2>
+    <div class="choices">
+      ${moods.map((m, i) => `
+        <button class="card" onclick="answerMood(${i})">
+          <span class="mood">${m.emoji}</span>${m.name}
+        </button>`).join('')}
+    </div>`;
+}
+
+function answerMood(index) {
+  const m = moods[index];
+  roundLabel.textContent = "VIBE CHECK COMPLETE";
+  bar.style.width = "100%";
+
+  screen.innerHTML = `
+    <div class="center">
+      <span class="hero-emoji">${m.emoji}</span>
+      <div class="eyebrow">YOUR OFFICIAL VIBE REPORT</div>
+      <h2>${m.name}.</h2>
+      <div id="feedback">${m.result}</div>
+      <button class="primary" onclick="showFinal()">ONE LAST THING 💌</button>
+    </div>`;
+}
+
+function showFinal() {
+  roundLabel.textContent = "A LITTLE NOTE ♡";
+  bar.style.width = "100%";
+
+  screen.innerHTML = `
+    <div class="center">
+      <span class="hero-emoji">💌</span>
+      <div class="eyebrow">a message for you</div>
+      <h2>Hey, Sara.</h2>
+      <div id="endMessage">
+        Moving away from your parents and starting uni in a new country is a huge change, so it's completely okay if some days feel harder than others. You don't have to have everything figured out right now — you're building a new chapter one day at a time, and you can miss home while still being brave enough to try something new. Be kind to yourself, take things at your own pace, and remember that even on the not-so-good days, you're doing better than you think. ♡
+      </div>
+      <p style="font-size:14px;">You deserve good days, good people, and a roomie who does the dishes. 😭</p>
+      <button class="primary" onclick="celebrate()">ONE LAST LITTLE SURPRISE ✨</button>
+      <button class="secondary" onclick="start()">PLAY AGAIN ↺</button>
+    </div>`;
+}
+
+function celebrate() {
+  screen.innerHTML = `
+    <div class="center">
+      <span class="hero-emoji">🥹💗</span>
+      <h2>That's it. That's the surprise.</h2>
+      <p>Someone out there thinks you're worth checking in on, making a whole game for, and reminding to take it easy.</p>
+      <p style="font-weight:800;">And that someone is the friend who sent you this. ♡</p>
+      <button class="primary" onclick="start()">REPLAY THE GAMES ↺</button>
+    </div>`;
+  const emojis = ['💗','✨','🌸','💜','⭐','🎀'];
+  for (let i = 0; i < 35; i++) {
+    const el = document.createElement('span');
+    el.className = 'confetti';
+    el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    el.style.left = Math.random()*100 + 'vw';
+    el.style.animationDelay = Math.random()*1.5 + 's';
+    el.style.fontSize = (14 + Math.random()*18) + 'px';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 5000);
+  }
+}
+
+start();
+</script>
+</body>
+</html>
